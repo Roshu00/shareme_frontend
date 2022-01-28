@@ -7,6 +7,13 @@ import { IoIosArrowForward } from "react-icons/io";
 //ASSETS
 import logo from "../assets/logo.png";
 
+const categories = [
+  { name: "Animals" },
+  { name: "Wallpapers" },
+  { name: "Cars" },
+  { name: "Gaming" },
+];
+
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 text-grey-500 hover:text-black transition-all duration-200 ease-in-out capitalize";
 const isActiveStyle =
@@ -35,14 +42,41 @@ const Sidebar = ({ user, closeToggle }) => {
             className={({ isActive }) =>
               isActive ? isActiveStyle : isNotActiveStyle
             }
+            onClick={handleCloseSidebar}
           >
             <RiHomeFill /> Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">
             Discover categories
           </h3>
+          {categories.slice(0, categories.length - 1).map((categorie) => (
+            <NavLink
+              to={`categories/${categorie.name}`}
+              className={({ isActive }) =>
+                isActive ? isActiveStyle : isNotActiveStyle
+              }
+              onClick={handleCloseSidebar}
+              key={categorie.name}
+            >
+              {categorie.name}
+            </NavLink>
+          ))}
         </div>
       </div>
+      {user && (
+        <Link
+          to={`user-profile/${user.id}`}
+          className="flex my-5 mb-3 gap-2 items-center bg-white rounden-lg shadow-lg mx-3"
+          onClick={handleCloseSidebar}
+        >
+          <img
+            src={user.image}
+            alt="user_image"
+            className="w-10 h-10 rounded-full"
+          />
+          <p>{user.userName}</p>
+        </Link>
+      )}
     </div>
   );
 };
