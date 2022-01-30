@@ -6,9 +6,27 @@ import { client } from "../client";
 //COMPONENTS
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
+//UTILS
+import { searchQuery } from "../utils/data";
 
 const Feed = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [pins, setPins] = useState(null);
+
+  const { categoryId } = useParams();
+
+  useEffect(() => {
+    if (categoryId) {
+      setLoading(true);
+      const query = searchQuery(categoryId);
+
+      client.fetch(query).then((data) => {
+        setPins(data);
+        setLoading(false);
+      });
+    } else {
+    }
+  }, [categoryId]);
 
   if (loading)
     return <Spinner message="We are adding new ideas for your feed!" />;
