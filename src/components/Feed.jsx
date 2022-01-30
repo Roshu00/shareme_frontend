@@ -7,7 +7,7 @@ import { client } from "../client";
 import MasonryLayout from "./MasonryLayout";
 import Spinner from "./Spinner";
 //UTILS
-import { searchQuery } from "../utils/data";
+import { feedQuery, searchQuery } from "../utils/data";
 
 const Feed = () => {
   const [loading, setLoading] = useState(false);
@@ -25,6 +25,10 @@ const Feed = () => {
         setLoading(false);
       });
     } else {
+      client.fetch(feedQuery).then((data) => {
+        setPins(data);
+        setLoading(false);
+      });
     }
   }, [categoryId]);
 
