@@ -83,7 +83,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                   type="button"
                   className="bg-red-500 opacity-70 hover:opacity-100 text-white text-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none"
                 >
-                  {save?.lenght} Saved
+                  {save?.length} Saved
                 </button>
               ) : (
                 <button
