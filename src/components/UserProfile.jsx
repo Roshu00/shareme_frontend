@@ -14,7 +14,8 @@ import {
 //CLIENT
 import { client } from "../client";
 //COMPONENTS
-import { MasonryLayout, Spinner } from ".";
+import MasonryLayout from "./MasonryLayout";
+import Spinner from "./Spinner";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ const UserProfile = () => {
   const { userId } = useParams();
 
   if (!user) {
+    console.log(user);
     return <Spinner message="Loading profile!" />;
   }
   return <div>USERPROFILE</div>;
