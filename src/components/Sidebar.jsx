@@ -6,13 +6,8 @@ import { RiHomeFill } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 //ASSETS
 import logo from "../assets/logo.png";
-
-const categories = [
-  { name: "Animals" },
-  { name: "Wallpapers" },
-  { name: "Cars" },
-  { name: "Gaming" },
-];
+//UTILS
+import { categories } from "../utils/data";
 
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 text-grey-500 hover:text-black transition-all duration-200 ease-in-out capitalize";
@@ -51,13 +46,18 @@ const Sidebar = ({ user, closeToggle }) => {
           </h3>
           {categories.slice(0, categories.length - 1).map((categorie) => (
             <NavLink
-              to={`categories/${categorie.name}`}
+              to={`category/${categorie.name}`}
               className={({ isActive }) =>
                 isActive ? isActiveStyle : isNotActiveStyle
               }
               onClick={handleCloseSidebar}
               key={categorie.name}
             >
+              <img
+                src={categorie.image}
+                alt="category"
+                className="w-8 h-8 rounded-full shadow-md"
+              />
               {categorie.name}
             </NavLink>
           ))}
